@@ -1,0 +1,36 @@
+{
+  "name": "ksa-estilo",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Sitio web demostrativo de Ksa Estilo — Muebles & Diseño Interior. Desarrollado por ALUQIS.",
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc -b --noEmit"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~6.0.3",
+    "vite": "^8.3.5"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.2",
+    "lucide-react": "^1.61.0",
+    "motion": "^14.6.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "^7.91.0",
+    "react-router": "^8.5.0",
+    "zod": "^4.6.7"
+  }
+}

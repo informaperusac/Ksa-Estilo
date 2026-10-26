@@ -1,0 +1,153 @@
+@import 'tailwindcss';
+
+/* ───────────── Tokens de diseño ───────────── */
+@theme {
+  --font-display: 'Cormorant Garamond', 'Iowan Old Style', Georgia, serif;
+  --font-sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Paleta de marca */
+  --color-linen: #f5f1ea; /* beige cálido: fondo principal */
+  --color-ivory: #faf9f6; /* blanco marfil: superficies */
+  --color-charcoal: #222222; /* negro carbón: texto y bandas oscuras */
+  --color-walnut: #8b6f47; /* marrón madera: acento */
+  --color-olive: #777d61; /* verde oliva: acento secundario */
+  --color-stone: #e8e5df; /* gris cálido: superficies secundarias */
+
+  /* Derivados para contraste AA en texto pequeño */
+  --color-walnut-deep: #6b5434;
+  --color-walnut-light: #c9ae86;
+  --color-olive-deep: #585d47;
+  --color-muted: #5c5851;
+  --color-line: #ddd7cc;
+  --color-danger: #a23b2a;
+
+  /* Escala tipográfica (cuarta justa, fluida) */
+  --text-hero: clamp(3.1rem, 1.2rem + 6.6vw, 8.25rem);
+  --text-hero--line-height: 0.92;
+  --text-hero--letter-spacing: -0.02em;
+  --text-display: clamp(2.6rem, 1.6rem + 3.9vw, 5.25rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.015em;
+  --text-title: clamp(1.75rem, 1.4rem + 1.3vw, 2.5rem);
+  --text-title--line-height: 1.08;
+  --text-lead: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+  --text-lead--line-height: 1.6;
+
+  --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-shimmer: shimmer 1.8s ease-in-out infinite;
+  --animate-scroll-cue: scroll-cue 2.4s var(--ease-soft) infinite;
+  --animate-soft-ring: soft-ring 6s ease-out infinite;
+
+  @keyframes shimmer {
+    0% { background-position: 120% 0; }
+    100% { background-position: -20% 0; }
+  }
+  @keyframes scroll-cue {
+    0% { transform: scaleY(0); transform-origin: top; }
+    45% { transform: scaleY(1); transform-origin: top; }
+    55% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+  @keyframes soft-ring {
+    0%, 70% { transform: scale(1); opacity: 0; }
+    75% { opacity: 0.45; }
+    100% { transform: scale(1.6); opacity: 0; }
+  }
+}
+
+/* ───────────── Base ───────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-linen);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  ::selection {
+    background-color: var(--color-walnut);
+    color: var(--color-ivory);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-walnut);
+    outline-offset: 3px;
+  }
+
+  /* Compensa el header fijo al navegar a secciones (72px móvil, 80px escritorio) */
+  section[id] { scroll-margin-top: 4.5rem; }
+  @media (width >= 64rem) {
+    section[id] { scroll-margin-top: 5rem; }
+  }
+
+  input[type='date']::-webkit-calendar-picker-indicator {
+    opacity: 0.55;
+    cursor: pointer;
+  }
+}
+
+/* ───────────── Utilidades propias ───────────── */
+
+/* Contenedor editorial con márgenes generosos */
+@utility container-page {
+  width: 100%;
+  max-width: 88rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) { padding-inline: 2rem; }
+  @media (width >= 64rem) { padding-inline: 3rem; }
+}
+
+/* El arco: motivo de marca inspirado en nichos y vanos arquitectónicos */
+@utility arch {
+  border-radius: 999px 999px 0 0;
+}
+
+/* Ritmo vertical de secciones */
+@utility section-y {
+  padding-block: 5.5rem;
+  @media (width >= 48rem) { padding-block: 7.5rem; }
+  @media (width >= 80rem) { padding-block: 9rem; }
+}
+
+/* Desplazamiento horizontal sin barra visible (filtros en móvil) */
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+/* Placeholder de carga */
+@utility skeleton {
+  background-image: linear-gradient(100deg, transparent 30%, rgb(255 255 255 / 0.55) 50%, transparent 70%);
+  background-size: 200% 100%;
+  animation: var(--animate-shimmer);
+}
+
+/* ───────────── Movimiento reducido ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,52 @@
+Fotografías demostrativas obtenidas de Unsplash (https://unsplash.com).
+Licencia: Unsplash License (https://unsplash.com/license) — uso gratuito, incluso comercial,
+sin atribución obligatoria. No se permite revenderlas sin modificación ni usarlas para
+crear un servicio de imágenes competidor.
+
+Son referencias visuales para la demostración comercial: no corresponden a productos ni
+proyectos realizados por Ksa Estilo y deben reemplazarse por fotografías propias.
+
+hero-sala: https://images.unsplash.com/photo-1618221195710-dd6b41faaea6
+nosotros-detalle: https://images.unsplash.com/photo-1600607687126-8a3414349a51
+sofa-milano-1: https://images.unsplash.com/photo-1540574163026-643ea20ade25
+sofa-milano-2: https://images.unsplash.com/photo-1600210492486-724fe5c67fb0
+sofa-milano-3: https://images.unsplash.com/photo-1554995207-c18c203602cb
+comedor-nordico-1: https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf
+comedor-nordico-2: https://images.unsplash.com/photo-1604578762246-41134e37f9cc
+comedor-nordico-3: https://images.unsplash.com/photo-1617806118233-18e1de247200
+centro-elegance-1: https://images.unsplash.com/photo-1594026112284-02bb6f3352fe
+centro-elegance-2: https://images.unsplash.com/photo-1600607687939-ce8a6c25118c
+centro-elegance-3: https://images.unsplash.com/photo-1618220048045-10a6dbdf83e0
+escritorio-minimal-1: https://images.unsplash.com/photo-1530018607912-eff2daa1bac4
+escritorio-minimal-2: https://images.unsplash.com/photo-1593062096033-9a26b09da705
+escritorio-minimal-3: https://images.unsplash.com/photo-1616593918824-4fef16054381
+closet-moderno-1: https://images.unsplash.com/photo-1614631446501-abcf76949eca
+closet-moderno-2: https://images.unsplash.com/photo-1558997519-83ea9252edf8
+closet-moderno-3: https://images.unsplash.com/photo-1556020685-ae41abfc9365
+cocina-premium-1: https://images.unsplash.com/photo-1600585152220-90363fe7e115
+cocina-premium-2: https://images.unsplash.com/photo-1600566752229-250ed79470f8
+cocina-premium-3: https://images.unsplash.com/photo-1588854337236-6889d631faa8
+cama-roble-1: https://images.unsplash.com/photo-1617325247661-675ab4b64ae2
+cama-roble-2: https://images.unsplash.com/photo-1615529162924-f8605388461d
+cama-roble-3: https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a
+aparador-terra-1: https://images.unsplash.com/photo-1616046229478-9901c5536a45
+aparador-terra-2: https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e
+aparador-terra-3: https://images.unsplash.com/photo-1581858726788-75bc0f6a952d
+servicio-interiores: https://images.unsplash.com/photo-1600210491892-03d54c0aaf87
+servicio-muebles: https://images.unsplash.com/photo-1611486212557-88be5ff6f941
+servicio-asesoria: https://images.unsplash.com/photo-1616627561950-9f746e330187
+servicio-optimizacion: https://images.unsplash.com/photo-1503387762-592deb58ef4e
+servicio-residencial: https://images.unsplash.com/photo-1615529182904-14819c35db37
+servicio-comercial: https://images.unsplash.com/photo-1517248135467-4c7edcad34c4
+inspiracion-sala-1: https://images.unsplash.com/photo-1604014237800-1c9102c219da
+inspiracion-sala-2: https://images.unsplash.com/photo-1618221639244-c1a8502c0eb9
+inspiracion-sala-3: https://images.unsplash.com/photo-1599696848652-f0ff23bc911f
+inspiracion-sala-4: https://images.unsplash.com/photo-1600607687920-4e2a09cf159d
+inspiracion-dormitorio-1: https://images.unsplash.com/photo-1617098900591-3f90928e8c54
+inspiracion-dormitorio-2: https://images.unsplash.com/photo-1600607687644-c7171b42498f
+inspiracion-cocina-1: https://images.unsplash.com/photo-1600489000022-c2086d79f9d4
+inspiracion-cocina-2: https://images.unsplash.com/photo-1484154218962-a197022b5858
+inspiracion-oficina-1: https://images.unsplash.com/photo-1497366811353-6870744d04b2
+inspiracion-oficina-2: https://images.unsplash.com/photo-1524758631624-e2822e304c36
+inspiracion-comercial-1: https://images.unsplash.com/photo-1441986300917-64674bd600d8
+inspiracion-comercial-2: https://images.unsplash.com/photo-1554118811-1e0d58224f24
