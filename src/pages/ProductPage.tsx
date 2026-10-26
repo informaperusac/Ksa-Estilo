@@ -55,8 +55,8 @@ export default function ProductPage() {
             '@type': 'BreadcrumbList',
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${siteConfig.url}/` },
-              { '@type': 'ListItem', position: 2, name: 'Catálogo', item: `${siteConfig.url}/catalogo` },
-              { '@type': 'ListItem', position: 3, name: product.name, item: `${siteConfig.url}/catalogo/${product.slug}` },
+              { '@type': 'ListItem', position: 2, name: 'Catálogo', item: `${siteConfig.url}/#/catalogo` },
+              { '@type': 'ListItem', position: 3, name: product.name, item: `${siteConfig.url}/#/catalogo/${product.slug}` },
             ],
           }}
         />

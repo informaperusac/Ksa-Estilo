@@ -43,12 +43,12 @@ export function Header() {
 
   return (
     <>
-      <a
-        href="#contenido"
+      <Link
+        to={`${pathname}#contenido`}
         className="fixed left-4 top-3 z-[70] -translate-y-24 rounded-full bg-charcoal px-5 py-3 text-sm font-semibold text-ivory transition-transform focus:translate-y-0"
       >
         Saltar al contenido
-      </a>
+      </Link>
 
       {/* Contenedor del foco atrapado cuando el menú móvil está abierto */}
       <div ref={shellRef}>

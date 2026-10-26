@@ -11,6 +11,7 @@ Demostración comercial desarrollada por **ALUQIS**.
 
 ## Contenido
 
+0. [GitHub Pages: despliegue automático](#github-pages-despliegue-automático)
 1. [Tecnologías](#tecnologías)
 2. [Requisitos](#requisitos)
 3. [Instalación y ejecución](#instalación-y-ejecución)
@@ -50,7 +51,7 @@ No hay backend en esta versión.
 ## Instalación y ejecución
 
 ```bash
-npm install        # instala dependencias
+npm ci             # instala las versiones exactas de package-lock.json
 npm run dev        # servidor de desarrollo → http://localhost:5173
 npm run build      # verificación de tipos + compilación de producción en /dist
 npm run preview    # sirve /dist localmente → http://localhost:4173
@@ -243,6 +244,10 @@ nuevo servicio en `src/services/` y una carpeta en `src/features/`, sin modifica
 
 ## Despliegue en Netlify o Vercel
 
+La compilación ahora usa `/Ksa-Estilo/` y navegación con hash para GitHub Pages.
+Para alojar en la raíz de otro proveedor, compila con `npm run build -- --base=/`
+y configura `VITE_SITE_URL` con el dominio correspondiente. Las rutas usan `/#/catalogo`.
+
 Ambos proyectos incluyen la configuración para que las rutas del SPA (`/catalogo/...`) funcionen al recargar.
 
 ### Netlify
@@ -262,6 +267,83 @@ Ambos proyectos incluyen la configuración para que las rutas del SPA (`/catalog
 4. Despliega. `vercel.json` incluye las reescrituras del SPA y cabeceras de caché y seguridad.
 
 Tras publicar con el dominio definitivo, registra `https://tudominio/sitemap.xml` en Google Search Console.
+
+## GitHub Pages: despliegue automático
+
+URL esperada: **https://informaperusac.github.io/Ksa-Estilo/**.
+Este repositorio contiene la configuración; la publicación se confirma cuando termina el workflow en GitHub.
+
+### Activación inicial en GitHub
+
+1. Revisa los cambios, realiza el commit y súbelo a `main` del repositorio
+   `https://github.com/informaperusac/Ksa-Estilo`.
+2. En **Settings → Pages → Build and deployment → Source**, selecciona **GitHub Actions**.
+   Para alojamiento gratuito, el repositorio debe ser público o disponer de un plan compatible.
+3. En **Actions → Deploy GitHub Pages**, revisa la ejecución del push. También puedes usar
+   **Run workflow** seleccionando `main` una vez que Pages esté activado.
+
+El archivo `.github/workflows/deploy.yml` ejecuta en Ubuntu con Node 22:
+`npm ci` y `npm run build` (incluye TypeScript), configura Pages y carga `dist`.
+El job `deploy` depende de `build`: si la compilación falla, no publica.
+Usa las acciones oficiales de GitHub, permisos de lectura para compilar y
+`pages: write` / `id-token: write` únicamente para publicar en `github-pages`.
+La concurrencia evita despliegues simultáneos y permite terminar una publicación en curso.
+Cada push posterior a `main` vuelve a publicar automáticamente; no necesitas una rama `gh-pages`.
+
+### Variables públicas y contacto
+
+El workflow fija `VITE_SITE_URL=https://informaperusac.github.io/Ksa-Estilo`.
+El resto de variables de `.env.example` se leen desde **Settings → Secrets and variables → Actions → Variables**
+como variables del repositorio, con el mismo nombre. No se copia tu `.env` local a GitHub.
+Después de cambiar una variable, vuelve a ejecutar el workflow.
+
+Todas las variables `VITE_*` se incorporan al código público del navegador: nunca coloques contraseñas,
+tokens privados ni claves secretas en ellas. `.gitignore` excluye `.env`, `.env.*` y permite `.env.example`.
+No hay credenciales necesarias para Pages: usa el token temporal de GitHub Actions.
+
+Sin un número real en `VITE_WHATSAPP_NUMBER` o un correo en `VITE_CONTACT_EMAIL`, los enlaces de contacto
+permanecen desactivados o se muestra la alternativa existente. El formulario valida y prepara la consulta
+para WhatsApp/correo; no existe un backend de envío en esta versión. No se añadieron contactos ficticios.
+`VITE_API_URL` puede quedar vacía para conservar el catálogo local. El modo demostración sigue activo
+si no se configura `VITE_DEMO_MODE=false`.
+
+### Navegación, recursos y verificación local
+
+Vite usa `/` en desarrollo y `/Ksa-Estilo/` al compilar. `HashRouter` conserva las rutas internas:
+
+- Catálogo: `https://informaperusac.github.io/Ksa-Estilo/#/catalogo`
+- Producto: `https://informaperusac.github.io/Ksa-Estilo/#/catalogo/sofa-contemporaneo-milano`
+- Cotización: `https://informaperusac.github.io/Ksa-Estilo/#/cotizacion?producto=sofa-contemporaneo-milano`
+- Sección: `https://informaperusac.github.io/Ksa-Estilo/#/#nosotros`
+
+Al compartir conserva el fragmento `#/`: recargar solicita el mismo `index.html`, evitando 404 de Pages.
+El historial del router permite usar Atrás y Adelante. Las imágenes y sus variantes usan `import.meta.env.BASE_URL`;
+favicon y precarga del hero usan `%BASE_URL%`. Se conservan las fotografías existentes y el diseño responsive.
+El sitemap contiene únicamente la URL raíz real: los fragmentos no son páginas independientes para buscadores.
+Los metadatos por página se actualizan en JavaScript; las vistas previas sociales reciben el HTML inicial común.
+
+```bash
+npm ci
+npm run build
+npm run typecheck
+npm run preview -- --host 127.0.0.1
+```
+
+Abre `http://127.0.0.1:4173/Ksa-Estilo/` para revisar el resultado de `dist`.
+Para desarrollo usa `npm run dev` y `http://localhost:5173/`.
+No hay scripts de lint ni pruebas automatizadas configurados actualmente.
+
+### Errores comunes
+
+- **404 al abrir un producto:** utiliza `/#/catalogo/...`, conservando `/Ksa-Estilo/` y las mayúsculas.
+- **CSS o imágenes ausentes:** comprueba que el workflow compile con la base `/Ksa-Estilo/` y publique `dist`.
+- **Deploy rechazado:** comprueba que Pages tenga Source = GitHub Actions y que el entorno `github-pages`
+  permita `main`; si exige aprobación, apruébalo en GitHub.
+- **Contacto no visible:** configura datos reales en las variables del repositorio y recompila.
+- **`npm ci` falla con EPERM en Windows:** detén los servidores Vite de este proyecto que bloqueen módulos nativos
+  y vuelve a ejecutar la instalación.
+- **Build incompatible con Node:** usa Node 22.22 o superior. Actions instala la última versión de Node 22;
+  `.nvmrc` conserva Node 24 para el desarrollo local existente.
 
 ## Créditos
 

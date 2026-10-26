@@ -2,22 +2,20 @@ import { fileURLToPath, URL } from 'node:url';
 import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import { defineConfig, loadEnv, type HtmlTagDescriptor, type Plugin } from 'vite';
-// Extensión explícita: requerida por el cargador nativo de configuración de Vite.
-import { products } from './src/data/products.ts';
-
 /**
  * SEO en tiempo de compilación:
  * - Inserta en index.html las etiquetas que requieren URL absoluta (canonical, og:url, og:image).
- * - Genera robots.txt y sitemap.xml a partir de las rutas y del catálogo.
- * Ambos dependen de VITE_SITE_URL; si no está definida, se omiten las URL absolutas.
+ * - Genera robots.txt y sitemap.xml para la página raíz de HashRouter.
+ * Usa VITE_SITE_URL o la URL de GitHub Pages por defecto al compilar.
  */
-function seoPlugin(siteUrl: string): Plugin {
-  const indexable = ['/', '/catalogo', '/cotizacion', ...products.map((p) => `/catalogo/${p.slug}`)];
+function seoPlugin(siteUrl: string, base: string): Plugin {
+  // Los fragmentos no son páginas independientes para los buscadores.
+  const indexable = ['/'];
 
   return {
     name: 'ksa-seo',
     transformIndexHtml() {
-      const ogImage = `${siteUrl}/og-image.jpg`;
+      const ogImage = siteUrl ? `${siteUrl}/og-image.jpg` : `${base}og-image.jpg`;
       const tags: HtmlTagDescriptor[] = [
         { tag: 'meta', attrs: { property: 'og:image', content: ogImage }, injectTo: 'head' },
         { tag: 'meta', attrs: { name: 'twitter:image', content: ogImage }, injectTo: 'head' },
@@ -53,12 +51,14 @@ function seoPlugin(siteUrl: string): Plugin {
   };
 }
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode, command, isPreview }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
-  const siteUrl = (env.VITE_SITE_URL ?? '').trim().replace(/\/+$/, '');
+  const base = command === 'build' || isPreview ? '/Ksa-Estilo/' : '/';
+  const siteUrl = (env.VITE_SITE_URL ?? (command === 'build' ? 'https://informaperusac.github.io/Ksa-Estilo' : '')).trim().replace(/\/+$/, '');
 
   return {
-    plugins: [react(), tailwindcss(), seoPlugin(siteUrl)],
+    base,
+    plugins: [react(), tailwindcss(), seoPlugin(siteUrl, base)],
     resolve: {
       alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
     },

@@ -1,6 +1,6 @@
 import { MotionConfig } from 'motion/react';
 import { lazy } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { HashRouter, Route, Routes } from 'react-router';
 import { Layout } from '@/components/layout/Layout';
 import HomePage from '@/pages/HomePage';
 
@@ -13,7 +13,7 @@ const NotFoundPage = lazy(() => import('@/pages/NotFoundPage'));
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       {/* "user": respeta la preferencia de movimiento reducido del sistema */}
       <MotionConfig reducedMotion="user">
         <Layout>
@@ -30,6 +30,6 @@ export default function App() {
           )}
         </Layout>
       </MotionConfig>
-    </BrowserRouter>
+    </HashRouter>
   );
 }

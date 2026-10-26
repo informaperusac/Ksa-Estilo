@@ -33,7 +33,7 @@ export function Layout({ children }: LayoutProps) {
         mode="wait"
         initial={false}
         onExitComplete={() => {
-          if (!window.location.hash) window.scrollTo({ top: 0, behavior: 'instant' });
+          if (!location.hash) window.scrollTo({ top: 0, behavior: 'instant' });
         }}
       >
         <motion.main

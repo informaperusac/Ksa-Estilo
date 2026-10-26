@@ -34,7 +34,7 @@ export const siteConfig = {
   tagline: 'Muebles & Diseño Interior',
   description:
     'Ksa Estilo: muebles y diseño interior. Explora piezas para sala, dormitorio, comedor, cocina y oficina, y solicita una cotización por WhatsApp.',
-  url: safeUrl(env.VITE_SITE_URL).replace(/\/+$/, ''),
+  url: safeUrl(env.VITE_SITE_URL ?? (env.PROD ? 'https://informaperusac.github.io/Ksa-Estilo' : '')).replace(/\/+$/, ''),
   locale: 'es-PE',
 
   /** Solo dígitos en formato internacional. Vacío si no está configurado o es inválido. */

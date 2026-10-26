@@ -1,5 +1,6 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { useRef } from 'react';
+import { Link } from 'react-router';
 import { ButtonLink } from '@/components/ui/Button';
 import { EASE_SOFT } from '@/components/ui/Reveal';
 import { siteConfig } from '@/config/site';
@@ -95,12 +96,12 @@ export function HeroSection() {
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1.4 }}
       >
-        <a href="#nosotros" className="group flex items-center gap-3 text-[0.8125rem] font-medium text-ivory/75 transition-colors hover:text-ivory">
+        <Link to="/#nosotros" className="group flex items-center gap-3 text-[0.8125rem] font-medium text-ivory/75 transition-colors hover:text-ivory">
           <span aria-hidden="true" className="relative block h-12 w-px overflow-hidden bg-ivory/20">
             <span className="absolute inset-0 animate-scroll-cue bg-ivory" />
           </span>
           Descubre más
-        </a>
+        </Link>
         {/* Margen derecho para no quedar bajo el botón flotante de WhatsApp */}
         {siteConfig.demoMode && <p className="mr-20 hidden text-xs text-ivory/60 sm:block">Imagen referencial</p>}
       </motion.div>

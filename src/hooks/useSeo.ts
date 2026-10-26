@@ -40,8 +40,8 @@ export function useSeo({ title, description = siteConfig.description, path, noin
     setMeta('property', 'og:description', description);
     setMeta('name', 'robots', noindex ? 'noindex, follow' : 'index, follow');
     if (siteConfig.url) {
-      setMeta('property', 'og:url', `${siteConfig.url}${path}`);
-      setCanonical(`${siteConfig.url}${path}`);
+      setMeta('property', 'og:url', `${siteConfig.url}/#${path}`);
+      setCanonical(`${siteConfig.url}/#${path}`);
     }
   }, [title, description, path, noindex]);
 }

@@ -9,7 +9,7 @@
       content="Ksa Estilo: muebles y diseño interior. Explora piezas para sala, dormitorio, comedor, cocina y oficina, y solicita una cotización por WhatsApp."
     />
     <meta name="theme-color" content="#F5F1EA" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="%BASE_URL%favicon.svg" />
 
     <!-- Open Graph / redes sociales -->
     <meta property="og:type" content="website" />
@@ -35,13 +35,13 @@
 
     <!-- Imagen del hero: se precarga solo en el inicio para acelerar el primer render -->
     <script>
-      if (location.pathname === '/') {
+      if (['', '#', '#/'].includes(location.hash) && location.pathname === '%BASE_URL%') {
         var hero = document.createElement('link');
         hero.rel = 'preload';
         hero.as = 'image';
         hero.type = 'image/webp';
-        hero.href = '/images/hero-sala-2400.webp';
-        hero.setAttribute('imagesrcset', '/images/hero-sala-960.webp 960w, /images/hero-sala-1600.webp 1600w, /images/hero-sala-2400.webp 2400w');
+        hero.href = '%BASE_URL%images/hero-sala-2400.webp';
+        hero.setAttribute('imagesrcset', '%BASE_URL%images/hero-sala-960.webp 960w, %BASE_URL%images/hero-sala-1600.webp 1600w, %BASE_URL%images/hero-sala-2400.webp 2400w');
         hero.setAttribute('imagesizes', '100vw');
         hero.setAttribute('fetchpriority', 'high');
         document.head.appendChild(hero);
